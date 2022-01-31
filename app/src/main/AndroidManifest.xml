@@ -12,11 +12,34 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".SignupActivity"
+            android:exported="true">
+<!--                        TODO this code was added for testing comment out before pushing-->
+<!--                        start-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--            end-->
+        </activity>
+        <activity android:name=".LoginActivity"
+            android:exported="true">
+<!--            &lt;!&ndash;            TODO this code was added for testing comment out before pushing&ndash;&gt;-->
+<!--            &lt;!&ndash;            start&ndash;&gt;-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--            &lt;!&ndash;            end&ndash;&gt;-->
         </activity>
     </application>
 
