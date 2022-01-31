@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">to_do_list_fv</string>
+    <string name="label">name</string>
+    <string name="label_signup_name">Name</string>
+    <string name="label_signup_email">Email</string>
+    <string name="label_signup_password">Password</string>
+    <string name="label_signup_repeat_password">Repeat Password</string>
+    <string name="sign_up_button">sign up</string>
+    <string name="or">OR</string>
+    <string name="sign_up">sign up</string>
+    <string name="login">login</string>
+    <string name="login_text">Login</string>
+    <string name="already_have_an_account">Already have an account?</string>
 </resources>
