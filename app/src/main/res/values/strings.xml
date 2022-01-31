@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">to_do_list_fv</string>
     <string name="label">name</string>
     <string name="label_signup_name">Name</string>
     <string name="label_signup_email">Email</string>
@@ -11,4 +10,11 @@
     <string name="login">login</string>
     <string name="login_text">Login</string>
     <string name="already_have_an_account">Already have an account?</string>
+    <string name="app_name">To Do List</string>
+    <string name="app_description"> A simple app for bigger problems. It’s a basic to-do list, a reminder,
+        a checklist and a task manager that assists you in getting things done.
+    </string>
+    <string name="get_started">
+        Get Started
+    </string>
 </resources>
