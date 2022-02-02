@@ -23,7 +23,8 @@
                 android:paddingEnd="10dp"
                 android:paddingBottom="10dp"
                 android:textSize="69sp"
-                android:textColor="#000"
+                android:fontFamily="@font/quicksand_bold"
+                android:textColor="#00BCD4"
                 android:textStyle="bold"/>
         </LinearLayout>
                <com.google.android.material.textfield.TextInputLayout
@@ -36,6 +37,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
+                   app:boxStrokeColor="#00BCD4"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -45,6 +47,13 @@
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/isEmailValidLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingStart="15dp"
+            android:text="" />
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/login_password"
             android:layout_width="match_parent"
@@ -56,6 +65,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="3dp"
+            app:boxStrokeColor="#00BCD4"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -73,6 +83,8 @@
             android:text="Don't have an account?"
             android:textSize="12sp"
             android:gravity="left"
+            android:fontFamily="@font/quicksand_bold"
+            android:textColor="#00BCD4"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             />
         <LinearLayout
@@ -87,8 +99,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/login_text"
-                android:background="@android:color/white"
-                android:textColor="#3B3B3B"
+                android:fontFamily="@font/quicksand_bold"
+                android:backgroundTint="#00BCD4"
+                android:textColor="#fff"
                 />
 
             <TextView
