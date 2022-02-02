@@ -17,4 +17,12 @@
     <string name="get_started">
         Get Started
     </string>
+    <string name="passwordStrength_strong">password is Strong</string>
+    <string name="passwordStrength_intermidiate">password is Moderate</string>
+    <string name="passwordStrength_weak">password is Weak</string>
+    <string name="passwords_match">passwords Match</string>
+    <string name="passwordsDontMatch">passwords don\'t Match</string>
+    <string name="email_valid">email Valid</string>
+    <string name="email_not_valid">email Not Valid</string>
+
 </resources>

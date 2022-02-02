@@ -21,9 +21,10 @@
             android:id="@+id/header_signup_or_login"
             android:text="@string/sign_up"
             android:paddingEnd="10dp"
-            android:paddingBottom="10dp"
+            android:paddingBottom="5dp"
             android:textSize="69sp"
-            android:textColor="#000"
+            android:fontFamily="@font/quicksand_bold"
+            android:textColor="#00BCD4"
             android:textStyle="bold"/>
         </LinearLayout>
         <com.google.android.material.textfield.TextInputLayout
@@ -31,12 +32,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/label_signup_name"
+            android:fontFamily="@font/quicksand_bold"
             app:counterEnabled="true"
             app:counterMaxLength="20"
             app:startIconDrawable="@drawable/user_icon"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
+            app:boxStrokeColor="#00BCD4"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -54,7 +57,9 @@
             app:startIconDrawable="@drawable/email_icon"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:paddingBottom="20dp"
+            android:paddingBottom="10dp"
+            android:fontFamily="@font/quicksand_bold"
+            app:boxStrokeColor="#00BCD4"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -64,17 +69,24 @@
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/isEmailValid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingStart="15dp"
+            android:text="" />
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/signup_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/label_signup_password"
             app:endIconMode="password_toggle"
-
-            app:errorEnabled="true"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:paddingBottom="3dp"
+            android:paddingBottom="10dp"
+            android:fontFamily="@font/quicksand_bold"
+            app:boxStrokeColor="#00BCD4"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -84,17 +96,25 @@
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/passwordStrength"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingStart="15dp"
+            android:text="" />
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/signup_repeat_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/label_signup_repeat_password"
             app:endIconMode="password_toggle"
-
-            app:errorEnabled="true"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:paddingBottom="10dp"
+            android:paddingBottom="1dp"
+            app:boxStrokeColor="#00BCD4"
+            android:fontFamily="@font/quicksand_bold"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -105,11 +125,20 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:id="@+id/passwordsMatch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="1dp"
+            android:paddingStart="15dp"
+            android:text="" />
         <Button
             android:id="@+id/go_to_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/already_have_an_account"
+            android:textColor="#00BCD4"
+            android:fontFamily="@font/quicksand_bold"
             android:textSize="12sp"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             />
@@ -125,8 +154,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sign_up_button"
-            android:background="@android:color/white"
-            android:textColor="#3B3B3B"
+            android:backgroundTint="#00BCD4"
+            android:textColor="#fff"
+            android:fontFamily="@font/quicksand_bold"
             />
 
         <TextView
@@ -134,7 +164,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/or"
-            android:paddingTop="15dp"/>
+            android:fontFamily="@font/quicksand_bold"
+            android:paddingTop="10dp"/>
         <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"
