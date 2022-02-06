@@ -11,6 +11,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -21,6 +27,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -33,10 +40,11 @@ import java.util.regex.Pattern;
 
 public class SignupActivity extends Activity {
     private GoogleSignInClient mGoogleSignInClient;
-    private final static int RC_SIGN_IN = 123;
+    private final static  int RC_SIGN_IN=123;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    TextInputLayout T_name, T_email, T_password, T_repeat_password;
+    TextInputLayout T_name,T_email,T_password, T_repeat_password;
     TextView ET_password, ET_repeat_password, ET_email;
+    private CallbackManager mCallbackManager;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +65,7 @@ public class SignupActivity extends Activity {
         signupButton.setOnClickListener(v -> signUP());
         ET_password = findViewById(R.id.passwordStrength);
         ET_repeat_password = findViewById(R.id.passwordsMatch);
-        ET_email = findViewById(R.id.isEmailValid);
+        ET_email= findViewById(R.id.isEmailValid);
 
         Objects.requireNonNull(T_password.getEditText()).addTextChangedListener(new TextWatcher() {
 
@@ -86,7 +94,8 @@ public class SignupActivity extends Activity {
                             ET_password.setTextColor(Color.RED);
                             break;
                     }
-                } else {
+                }
+                else{
                     ET_password.setText("");
 
                 }
@@ -111,7 +120,8 @@ public class SignupActivity extends Activity {
                         ET_repeat_password.setText(R.string.passwordsDontMatch);
                         ET_repeat_password.setTextColor(Color.RED);
                     }
-                } else {
+                }
+                else{
                     ET_repeat_password.setText("");
                 }
             }
@@ -135,19 +145,37 @@ public class SignupActivity extends Activity {
                         ET_email.setText(R.string.email_not_valid);
                         ET_email.setTextColor(Color.RED);
                     }
-                } else {
+                }
+                else{
                     ET_email.setText("");
                 }
             }
         });
-    }
+        // Initialize Facebook Login button
+        mCallbackManager = CallbackManager.Factory.create();
+        LoginButton loginButton = findViewById(R.id.login_button_f);
+        loginButton.setReadPermissions("email", "public_profile");
+        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                handleFacebookAccessToken(loginResult.getAccessToken());
+            }
 
+            @Override
+            public void onCancel() {
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+            }
+        });
+    }
     private void signUP() {
-        String name = Objects.requireNonNull(T_name.getEditText()).getText().toString();
-        String email = Objects.requireNonNull(T_email.getEditText()).getText().toString();
-        String password = Objects.requireNonNull(T_password.getEditText()).getText().toString();
-        String Repeated_password = Objects.requireNonNull(T_repeat_password.getEditText()).getText().toString();
-        if (name.length() != 0 && email.length() != 0 && password.length() != 0 && Repeated_password.length() != 0 && password.compareTo(Repeated_password) == 0 && passwordStrength(T_password.getEditText().getText().toString()) < 2 && isEmailValid(email)) {
+        String name= Objects.requireNonNull(T_name.getEditText()).getText().toString();
+        String email= Objects.requireNonNull(T_email.getEditText()).getText().toString();
+        String password= Objects.requireNonNull(T_password.getEditText()).getText().toString();
+        String Repeated_password= Objects.requireNonNull(T_repeat_password.getEditText()).getText().toString();
+        if(name.length()!=0&&email.length()!=0&&password.length()!=0&&Repeated_password.length()!=0&&password.compareTo(Repeated_password)==0&& passwordStrength(T_password.getEditText().getText().toString())<2&& isEmailValid(email)) {
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -185,16 +213,15 @@ public class SignupActivity extends Activity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         findViewById(R.id.sign_in_button).setOnClickListener(v -> signIn());
     }
-
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        // Pass the activity result back to the Facebook SDK
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
@@ -228,7 +255,8 @@ public class SignupActivity extends Activity {
                 });
     }
 
-    public static int passwordStrength(String input) {
+    public static int passwordStrength(String input)
+    {
         // Checking lower alphabet in string
         int n = input.length();
         boolean hasLower = false, hasUpper = false,
@@ -236,7 +264,8 @@ public class SignupActivity extends Activity {
         Set<Character> set = new HashSet<>(
                 Arrays.asList('!', '@', '#', '$', '%', '^', '&',
                         '*', '(', ')', '-', '+'));
-        for (char i : input.toCharArray()) {
+        for (char i : input.toCharArray())
+        {
             if (Character.isLowerCase(i))
                 hasLower = true;
             if (Character.isUpperCase(i))
@@ -256,9 +285,9 @@ public class SignupActivity extends Activity {
         else
             return 2;
     }
-
-    public static boolean isEmailValid(String email) {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
+    public static boolean isEmailValid(String email)
+    {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
                 "[a-zA-Z0-9_+&*-]+)*@" +
                 "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
                 "A-Z]{2,7}$";
@@ -267,5 +296,27 @@ public class SignupActivity extends Activity {
         if (email == null)
             return false;
         return pat.matcher(email).matches();
+    }
+    private void handleFacebookAccessToken(AccessToken token) {
+
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Intent intent = new Intent(SignupActivity.this, ProfileActivity.class);
+                            startActivity(intent);
+                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+
+                            updateUI(null);
+                        }
+                    }
+                });
     }
 }

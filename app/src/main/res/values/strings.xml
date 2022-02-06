@@ -53,6 +53,8 @@
     <string name="pick_a_date">Pick a date</string>
     <string name="select_due_date">Select due date</string>
     <string name="choose_category">Choose at least one Category</string>
-
+    <string name="facebook_app_id">336953091494324</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">56789</string>
 
 </resources>
