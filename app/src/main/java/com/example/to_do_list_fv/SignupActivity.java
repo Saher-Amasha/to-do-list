@@ -33,10 +33,11 @@ import java.util.regex.Pattern;
 
 public class SignupActivity extends Activity {
     private GoogleSignInClient mGoogleSignInClient;
-    private final static  int RC_SIGN_IN=123;
+    private final static int RC_SIGN_IN = 123;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    TextInputLayout T_name,T_email,T_password, T_repeat_password;
+    TextInputLayout T_name, T_email, T_password, T_repeat_password;
     TextView ET_password, ET_repeat_password, ET_email;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
@@ -56,7 +57,7 @@ public class SignupActivity extends Activity {
         signupButton.setOnClickListener(v -> signUP());
         ET_password = findViewById(R.id.passwordStrength);
         ET_repeat_password = findViewById(R.id.passwordsMatch);
-        ET_email= findViewById(R.id.isEmailValid);
+        ET_email = findViewById(R.id.isEmailValid);
 
         Objects.requireNonNull(T_password.getEditText()).addTextChangedListener(new TextWatcher() {
 
@@ -85,8 +86,7 @@ public class SignupActivity extends Activity {
                             ET_password.setTextColor(Color.RED);
                             break;
                     }
-                }
-                else{
+                } else {
                     ET_password.setText("");
 
                 }
@@ -111,8 +111,7 @@ public class SignupActivity extends Activity {
                         ET_repeat_password.setText(R.string.passwordsDontMatch);
                         ET_repeat_password.setTextColor(Color.RED);
                     }
-                }
-                else{
+                } else {
                     ET_repeat_password.setText("");
                 }
             }
@@ -136,19 +135,19 @@ public class SignupActivity extends Activity {
                         ET_email.setText(R.string.email_not_valid);
                         ET_email.setTextColor(Color.RED);
                     }
-                }
-                else{
+                } else {
                     ET_email.setText("");
                 }
             }
         });
     }
+
     private void signUP() {
-        String name= Objects.requireNonNull(T_name.getEditText()).getText().toString();
-        String email= Objects.requireNonNull(T_email.getEditText()).getText().toString();
-        String password= Objects.requireNonNull(T_password.getEditText()).getText().toString();
-        String Repeated_password= Objects.requireNonNull(T_repeat_password.getEditText()).getText().toString();
-        if(name.length()!=0&&email.length()!=0&&password.length()!=0&&Repeated_password.length()!=0&&password.compareTo(Repeated_password)==0&& passwordStrength(T_password.getEditText().getText().toString())<2&& isEmailValid(email)) {
+        String name = Objects.requireNonNull(T_name.getEditText()).getText().toString();
+        String email = Objects.requireNonNull(T_email.getEditText()).getText().toString();
+        String password = Objects.requireNonNull(T_password.getEditText()).getText().toString();
+        String Repeated_password = Objects.requireNonNull(T_repeat_password.getEditText()).getText().toString();
+        if (name.length() != 0 && email.length() != 0 && password.length() != 0 && Repeated_password.length() != 0 && password.compareTo(Repeated_password) == 0 && passwordStrength(T_password.getEditText().getText().toString()) < 2 && isEmailValid(email)) {
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -167,7 +166,7 @@ public class SignupActivity extends Activity {
                         }
                     });
         }
-        }
+    }
 
 
     private void updateUI(FirebaseUser account) {
@@ -186,10 +185,12 @@ public class SignupActivity extends Activity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         findViewById(R.id.sign_in_button).setOnClickListener(v -> signIn());
     }
+
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -227,8 +228,7 @@ public class SignupActivity extends Activity {
                 });
     }
 
-    public static int passwordStrength(String input)
-    {
+    public static int passwordStrength(String input) {
         // Checking lower alphabet in string
         int n = input.length();
         boolean hasLower = false, hasUpper = false,
@@ -236,8 +236,7 @@ public class SignupActivity extends Activity {
         Set<Character> set = new HashSet<>(
                 Arrays.asList('!', '@', '#', '$', '%', '^', '&',
                         '*', '(', ')', '-', '+'));
-        for (char i : input.toCharArray())
-        {
+        for (char i : input.toCharArray()) {
             if (Character.isLowerCase(i))
                 hasLower = true;
             if (Character.isUpperCase(i))
@@ -253,13 +252,13 @@ public class SignupActivity extends Activity {
             return 0;
         else if ((hasLower || hasUpper || specialChar)
                 && (n >= 6))
-           return 1;
+            return 1;
         else
             return 2;
     }
-    public static boolean isEmailValid(String email)
-    {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+
+    public static boolean isEmailValid(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
                 "[a-zA-Z0-9_+&*-]+)*@" +
                 "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
                 "A-Z]{2,7}$";

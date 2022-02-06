@@ -31,12 +31,12 @@ import java.util.regex.Pattern;
 public class LoginActivity extends Activity {
 
     private GoogleSignInClient mGoogleSignInClient;
-    private final static  int RC_SIGN_IN=123;
+    private final static int RC_SIGN_IN = 123;
     private FirebaseAuth mAuth;
-    TextInputLayout T_password,T_email;
+    TextInputLayout T_password, T_email;
     TextView ET_email;
 
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
@@ -45,39 +45,40 @@ public class LoginActivity extends Activity {
         createRequest();
 
 
-        Button goToSignUp =  findViewById(R.id.go_to_signup);
+        Button goToSignUp = findViewById(R.id.go_to_signup);
         goToSignUp.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
             startActivity(intent);
         });
 
-        T_email=findViewById(R.id.login_email);
-        T_password=findViewById(R.id.login_password);
-        ET_email= findViewById(R.id.isEmailValidLogin);
+        T_email = findViewById(R.id.login_email);
+        T_password = findViewById(R.id.login_password);
+        ET_email = findViewById(R.id.isEmailValidLogin);
 
-        Button loginUpButton =  findViewById(R.id.login_button);
+        Button loginUpButton = findViewById(R.id.login_button);
         loginUpButton.setOnClickListener(v -> logIN());
         Objects.requireNonNull(T_email.getEditText()).addTextChangedListener(new TextWatcher() {
 
             @Override
-            public void afterTextChanged(Editable s) { }
+            public void afterTextChanged(Editable s) {
+            }
 
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                    if (Objects.requireNonNull(T_email.getEditText()).getText().toString().length() != 0) {
-                        if (isEmailValid(T_email.getEditText().getText().toString())) {
-                            ET_email.setText(R.string.email_valid);
-                            ET_email.setTextColor(Color.GREEN);
-                        } else {
-                            ET_email.setText(R.string.email_not_valid);
-                            ET_email.setTextColor(Color.RED);
-                        }
-                }
-                else{
+                if (Objects.requireNonNull(T_email.getEditText()).getText().toString().length() != 0) {
+                    if (isEmailValid(T_email.getEditText().getText().toString())) {
+                        ET_email.setText(R.string.email_valid);
+                        ET_email.setTextColor(Color.GREEN);
+                    } else {
+                        ET_email.setText(R.string.email_not_valid);
+                        ET_email.setTextColor(Color.RED);
+                    }
+                } else {
                     ET_email.setText("");
 
                 }
@@ -86,8 +87,8 @@ public class LoginActivity extends Activity {
     }
 
     private void logIN() {
-        String email= Objects.requireNonNull(T_email.getEditText()).getText().toString();
-        String password= Objects.requireNonNull(T_password.getEditText()).getText().toString();
+        String email = Objects.requireNonNull(T_email.getEditText()).getText().toString();
+        String password = Objects.requireNonNull(T_password.getEditText()).getText().toString();
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -118,11 +119,11 @@ public class LoginActivity extends Activity {
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-               //
+        //
 
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-            findViewById(R.id.sign_in_button).setOnClickListener(v -> signIn());
+        findViewById(R.id.sign_in_button).setOnClickListener(v -> signIn());
     }
 
     private void signIn() {
@@ -155,27 +156,27 @@ public class LoginActivity extends Activity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                          FirebaseUser user = mAuth.getCurrentUser();
-                          Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
-                          startActivity(intent);
-                          updateUI(user);
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
+                            startActivity(intent);
+                            updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
-                          updateUI(null);
+                            updateUI(null);
                         }
                     }
                 });
     }
-        public static boolean isEmailValid(String email)
-        {
-            String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
-                    "[a-zA-Z0-9_+&*-]+)*@" +
-                    "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
-                    "A-Z]{2,7}$";
 
-            Pattern pat = Pattern.compile(emailRegex);
-            if (email == null)
-                return false;
-            return pat.matcher(email).matches();
-        }
+    public static boolean isEmailValid(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
+    }
 }

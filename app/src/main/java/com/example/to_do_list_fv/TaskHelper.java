@@ -1,24 +1,41 @@
 package com.example.to_do_list_fv;
+
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+
 enum Urgency {
     LOW,
     MEDIUM,
     HIGH
 }
+
 public class TaskHelper {
+
     String Name, Description;
-    Date  ToExecute, Postponed;
+    Date ToExecute, Postponed;
+    String Category;
     Urgency TaskUrgency;
     int executed;
+
     public TaskHelper() {
+        Name = "Empty Task";
+        Description = "Empty Description";
+        ToExecute = null;
+        Postponed = null;
+        Category = "Empty Category";
+        this.executed = 0;
+        this.TaskUrgency = Urgency.LOW;
     }
-    public TaskHelper(String name, String description, Date toExecute, Date postponed, Urgency taskUrgency, int executed) {
+
+    public TaskHelper(String name, String description, Date toExecute, Date postponed, int executed, String taskCategory, Urgency taskUrgency) {
         Name = name;
         Description = description;
         ToExecute = toExecute;
         Postponed = postponed;
-        TaskUrgency = taskUrgency;
+        Category = taskCategory;
         this.executed = executed;
+        this.TaskUrgency = taskUrgency;
     }
 
     public String getName() {
@@ -53,6 +70,22 @@ public class TaskHelper {
         Postponed = postponed;
     }
 
+    public int getExecuted() {
+        return executed;
+    }
+
+    public void setExecuted(int executed) {
+        this.executed = executed;
+    }
+
+    public String getCategory() {
+        return Category;
+    }
+
+    public void setCategory(String category) {
+        Category = category;
+    }
+
     public Urgency getTaskUrgency() {
         return TaskUrgency;
     }
@@ -61,11 +94,5 @@ public class TaskHelper {
         TaskUrgency = taskUrgency;
     }
 
-    public int getExecuted() {
-        return executed;
-    }
 
-    public void setExecuted(int executed) {
-        this.executed = executed;
-    }
 }
