@@ -6,8 +6,8 @@
     <string name="label_signup_repeat_password">Repeat Password</string>
     <string name="sign_up_button">sign up</string>
     <string name="or">OR</string>
-    <string name="sign_up">sign up</string>
-    <string name="login">login</string>
+    <string name="sign_up">Sign up</string>
+    <string name="login">Login</string>
     <string name="login_text">Login</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="app_name">To Do List</string>
@@ -24,5 +24,35 @@
     <string name="passwordsDontMatch">passwords don\'t Match</string>
     <string name="email_valid">email Valid</string>
     <string name="email_not_valid">email Not Valid</string>
+    <string name="add_task">Add Task</string>
+    <string name="enter_new_task">Enter New Task</string>
+    <string name="add_flag">Add Flag</string>
+    <string name="choose_date">Choose Date</string>
+    <string name="date">Date</string>
+    <string name="flag">Flag</string>
+    <string name="choose_date_flag">Pick a due Date and a Flag:</string>
+    <string name="task_title">Task title</string>
+    <string name="description">Description</string>
+    <string name="task_description">Task Description</string>
+    <string name="title">Title</string>
+    <string name="category">Category</string>
+    <string name="all">All</string>
+    <string name="work">Work</string>
+    <string name="education">Education</string>
+    <string name="sports">Sports</string>
+    <string name="friends">Friends</string>
+    <string name="meetings">Meetings</string>
+    <string name="choose_a_due_date">Choose a due date</string>
+    <string name="go_back">Go Back</string>
+    <string name="added_successfully">The task has been added successfully!</string>
+    <string name="tasks">Tasks</string>
+    <string name="urgency">Urgency</string>
+    <string name="low">Low</string>
+    <string name="medium">Medium</string>
+    <string name="high">High</string>
+    <string name="pick_a_date">Pick a date</string>
+    <string name="select_due_date">Select due date</string>
+    <string name="choose_category">Choose at least one Category</string>
+
 
 </resources>
