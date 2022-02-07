@@ -11,7 +11,6 @@
         android:theme="@style/Theme.To_do_list_fv">
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -41,6 +40,14 @@
         </activity>
         <activity
             android:name=".SuccessMessage"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".UpdateTaskActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".UpdateSuccess"
             android:exported="true">
         </activity>
         <activity android:name="com.facebook.FacebookActivity"

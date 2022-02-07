@@ -1,0 +1,306 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:id="@+id/cl"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<LinearLayout
+    android:id="@+id/linearLayout4"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top|center"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/add_task" />
+
+</LinearLayout>
+
+
+<LinearLayout
+    android:id="@+id/linearLayout2"
+    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginTop="120dp"
+    android:nestedScrollingEnabled="true"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/quicksand_bold"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="5dp"
+        android:text="@string/task_title"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/task_title"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:hint="@string/title"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        app:boxStrokeColor="#00BCD4">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/task_title_"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/quicksand_bold"
+            android:textColorHint="#78909C" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/quicksand_bold"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="5dp"
+        android:text="@string/task_description"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/task_description"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:hint="@string/description"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        app:boxStrokeColor="#00BCD4">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/description_"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/quicksand_bold"
+            android:textColorHint="#78909C" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/quicksand_bold"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="5dp"
+        android:text="@string/urgency"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+
+        <RadioGroup
+            android:id="@+id/urgencies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checkedButton="@+id/low"
+            android:orientation="horizontal"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp">
+
+            <RadioButton
+                android:id="@+id/low"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="#00BCD4"
+                android:fontFamily="@font/quicksand_bold"
+                android:text="@string/low" />
+
+            <RadioButton
+                android:id="@+id/medium"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:buttonTint="#00BCD4"
+                android:fontFamily="@font/quicksand_bold"
+                android:text="@string/medium" />
+
+            <RadioButton
+                android:id="@+id/high"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:buttonTint="#00BCD4"
+                android:fontFamily="@font/quicksand_bold"
+                android:text="@string/high" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/category_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/quicksand_bold"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="5dp"
+        android:text="@string/category"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/category1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/all"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:insetLeft="5dp"
+            android:insetRight="5dp"
+            android:text="@string/all" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/sports"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FDF1DB"
+            android:insetLeft="5dp"
+            android:insetRight="5dp"
+            android:text="@string/sports"
+            app:icon="@drawable/ic_baseline_sports_soccer_24" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/work"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FFEBE5"
+            android:insetLeft="5dp"
+            android:insetRight="5dp"
+            android:text="@string/work"
+            app:icon="@drawable/ic_baseline_work_outline_24" />
+
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/category2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/education"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#DAF6F4"
+            android:insetLeft="5dp"
+            android:insetRight="5dp"
+            android:text="@string/education"
+            app:icon="@drawable/ic_baseline_architecture_24" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/friends"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#CFECFF"
+            android:insetLeft="5dp"
+            android:insetRight="5dp"
+            android:text="@string/friends"
+            app:icon="@drawable/user_icon" />
+
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/quicksand_bold"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="5dp"
+        android:text="@string/date"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/date_picker"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:backgroundTint="@color/white"
+        android:insetLeft="5dp"
+        android:insetRight="5dp"
+        android:text="@string/pick_a_date"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        app:icon="@drawable/ic_baseline_date_range_24"
+        app:iconTint="#78909C" />
+
+
+</LinearLayout>
+
+
+<com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+    android:id="@+id/floating_action_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|end"
+    android:layout_margin="20sp"
+    android:backgroundTint="#00BCD4"
+    android:clickable="true"
+    android:contentDescription="@string/app_name"
+    android:focusable="true"
+    android:fontFamily="@font/quicksand_bold"
+    android:padding="18dp"
+    android:text='@string/add_task'
+    android:textColor="@color/white"
+    app:icon="@drawable/ic_baseline_add_task_24"
+    app:iconTint="@color/white" />
+
+<Button
+    android:id="@+id/go_back"
+    style="@style/Widget.MaterialComponents.Button.TextButton"
+    android:layout_width="50dp"
+    android:layout_height="wrap_content"
+    android:contentDescription="@string/add_task"
+    android:drawableEnd="@drawable/ic_baseline_exit_to_app_24"
+    android:textColor="#00BCD4"
+    app:iconTint="#00BCD4"
+    app:layout_anchor="@+id/linearLayout4"
+    app:layout_anchorGravity="end|top" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

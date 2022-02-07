@@ -1,11 +1,14 @@
 package com.example.to_do_list_fv;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -90,6 +93,13 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> 
                 holder.task.setPaintFlags(holder.task.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
             }
         });
+
+        holder.edit.setOnClickListener(v -> {
+            Intent intent = new Intent(this.activity, UpdateTaskActivity.class);
+            intent.putExtra("name",holder.title.getText().toString());
+            intent.putExtra("description",holder.task.getText().toString());
+            activity.startActivity(intent);
+        });
     }
 
     public int getItemCount() {
@@ -134,12 +144,13 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         CheckBox task;
         TextView title, task_category;
-
+        Button edit;
         ViewHolder(View view) {
             super(view);
             task = view.findViewById(R.id.todoCheckBox);
             title = view.findViewById(R.id.show_title);
             task_category = view.findViewById(R.id.task_category);
+            edit=view.findViewById(R.id.edit_button);
 
         }
     }

@@ -45,6 +45,7 @@
     <string name="choose_a_due_date">Choose a due date</string>
     <string name="go_back">Go Back</string>
     <string name="added_successfully">The task has been added successfully!</string>
+    <string name="updated_successfully">The task has been updated successfully!</string>
     <string name="tasks">Tasks</string>
     <string name="urgency">Urgency</string>
     <string name="low">Low</string>

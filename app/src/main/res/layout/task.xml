@@ -44,6 +44,25 @@
             android:fontFamily="@font/quicksand_bold"
             android:text="@string/app_name"
             android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/edit_button"
+            android:layout_width="108dp"
+            android:layout_height="71dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="39dp"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/quicksand_bold"
+            android:gravity="right"
+            android:padding="0dp"
+            android:paddingRight="25dp"
+            android:text="       &#8942;  "
+            android:textColor="@color/black"
+            android:textSize="20sp">
+
+        </Button>
     </RelativeLayout>
+
 
 </androidx.cardview.widget.CardView>
