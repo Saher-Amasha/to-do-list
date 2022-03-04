@@ -57,5 +57,8 @@
     <string name="facebook_app_id">336953091494324</string>
     <string name="fb_login_protocol_scheme">fb1234</string>
     <string name="facebook_client_token">56789</string>
+    <string name="channel_name">to do list</string>
+    <string name="channel_description">to do lost notification</string>
+    <string name="pick_new_date">pick new date</string>
 
 </resources>

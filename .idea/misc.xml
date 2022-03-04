@@ -34,8 +34,9 @@
         <entry key="..\:/Users/A/AndroidStudioProjects/to-do-list/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.290625" />
         <entry key="..\:/Users/A/AndroidStudioProjects/to-do-list/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.290625" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/to_do_list_fv/app/src/main/res/layout/activity_login.xml" value="0.18659420289855072" />
-        <entry key="..\:/Users/Admin/AndroidStudioProjects/to_do_list_fv/app/src/main/res/layout/activity_update_task.xml" value="0.11296296296296296" />
-        <entry key="..\:/Users/Admin/AndroidStudioProjects/to_do_list_fv/app/src/main/res/layout/add_task.xml" value="0.4" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/to_do_list_fv/app/src/main/res/layout/activity_signup.xml" value="0.159375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/to_do_list_fv/app/src/main/res/layout/activity_update_task.xml" value="0.264" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/to_do_list_fv/app/src/main/res/layout/add_task.xml" value="0.2634730538922156" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/to_do_list_fv/app/src/main/res/layout/all_tasks.xml" value="0.264" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/to_do_list_fv/app/src/main/res/layout/success.xml" value="0.11296296296296296" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/to_do_list_fv/app/src/main/res/layout/task.xml" value="0.4" />

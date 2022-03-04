@@ -1,13 +1,17 @@
 package com.example.to_do_list_fv;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -204,7 +208,7 @@ public class SignupActivity extends Activity {
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken("29091666425-kkn0r4d0elf9j6oae3ke5vq0518ral56.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
         //
@@ -312,8 +316,11 @@ public class SignupActivity extends Activity {
                             startActivity(intent);
                             updateUI(user);
                         } else {
-                            // If sign in fails, display a message to the user.
 
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            Toast.makeText(SignupActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
                     }
