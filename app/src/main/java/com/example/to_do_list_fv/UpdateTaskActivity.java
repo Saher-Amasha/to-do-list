@@ -1,6 +1,7 @@
 
 package com.example.to_do_list_fv;
 
+        import android.annotation.SuppressLint;
         import android.content.Intent;
         import android.graphics.Color;
         import android.os.Bundle;
@@ -25,8 +26,15 @@ package com.example.to_do_list_fv;
         import com.google.firebase.database.FirebaseDatabase;
         import com.google.firebase.database.ValueEventListener;
 
+        import java.text.ParseException;
+        import java.text.SimpleDateFormat;
+        import java.time.LocalDate;
+        import java.time.format.DateTimeFormatter;
         import java.util.Calendar;
         import java.util.Date;
+        import java.util.Locale;
+        import java.util.TimeZone;
+
 public class UpdateTaskActivity extends FragmentActivity {
     private DatabaseReference mDatabase;
     private String[] email_parts;
@@ -39,6 +47,7 @@ public class UpdateTaskActivity extends FragmentActivity {
 
     private Date due_date;
 
+    @SuppressLint("SimpleDateFormat")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_task);
@@ -132,11 +141,40 @@ public class UpdateTaskActivity extends FragmentActivity {
         if (extras != null) {
             String value = extras.getString("name");
             String value1 = extras.getString("description");
+            String value2 = extras.getString("category");
+
             title.setText(value.split(",")[0]);
             description.setText(value1);
-        }
-    }
+            for(String _category_name : value2.split(" "))
+            {
+                categories1.check(getCategoryId(_category_name));
+                categories2.check(getCategoryId(_category_name));
+            }
+            String[] date_parts2 = value.split(", ")[1].split("/");
+            Calendar cal = Calendar.getInstance();
+            cal.clear(); // Sets hours/minutes/seconds/milliseconds to zero
+            cal.set(Integer.parseInt(date_parts2[2]) + 1900,Integer.parseInt(date_parts2[1]), Integer.parseInt(date_parts2[0]) );
+            due_date = cal.getTime();
 
+        }
+        pick_date.setText(R.string.pick_new_date);
+    }
+    private int getCategoryId(String name)
+    {
+        switch (name) {
+            case "All":
+                return R.id.all;
+            case "Sports":
+                return R.id.sports;
+            case "Work":
+                return R.id.work;
+            case "Education":
+                return R.id.education;
+            case "Friends":
+                return R.id.friends;
+        }
+        return 0;
+    }
     private Urgency getUrgency(String urgency) {
         switch (urgency) {
             case "Medium":

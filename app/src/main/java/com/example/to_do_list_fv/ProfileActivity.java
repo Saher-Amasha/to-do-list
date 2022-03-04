@@ -1,9 +1,17 @@
 package com.example.to_do_list_fv;
 
+import static android.content.Intent.ACTION_CAMERA_BUTTON;
+import static java.lang.Boolean.TRUE;
+
 import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +20,8 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,6 +43,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
 public class ProfileActivity extends  FragmentActivity {
     private DatabaseReference mDatabase;
@@ -73,9 +84,8 @@ public class ProfileActivity extends  FragmentActivity {
                         } else {
 
                             for (DataSnapshot task_ : task.getResult().getChildren()) {
-
-                                        tasksList.add(task_.getValue(TaskHelper.class));
-                                        tasksAdapter.setTasks(tasksList);
+                                     tasksList.add(task_.getValue(TaskHelper.class));
+                                     tasksAdapter.setTasks(tasksList);
 
                             }
                         }
@@ -145,7 +155,7 @@ public class ProfileActivity extends  FragmentActivity {
                         calendar.clear(); // Sets hours/minutes/seconds/milliseconds to zero
                         calendar.set(Integer.parseInt(date_parts[2]) + 1900, getMonthNumber(date_parts[0]), Integer.parseInt(date_parts[1].split(",")[0]));
                         currently_selected_date = calendar.getTime();
-                        func(email_parts);
+                        show_tasks_for_selected_date(email_parts);
 
                     } else {
                         picker.setText(R.string.select_due_date);
@@ -209,40 +219,39 @@ public class ProfileActivity extends  FragmentActivity {
         return num;
     }
 
-    void func(String[] email_parts)
+    void show_tasks_for_selected_date(String[] email_parts)
     {
         tasksList = new ArrayList<>();
         @SuppressLint("SimpleDateFormat") SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
         mDatabase.child("users").child(email_parts[0]).child("tasks").get().addOnCompleteListener(
-                new OnCompleteListener<DataSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DataSnapshot> task) {
-                        if (!task.isSuccessful()) {
-                            Log.e("firebase", "Error getting data", task.getException());
-                        } else {
-                            for (DataSnapshot task_ : task.getResult().getChildren()) {
+                task -> {
+                    if (!task.isSuccessful()) {
+                        Log.e("firebase", "Error getting data", task.getException());
+                    } else {
+                        for (DataSnapshot task_ : task.getResult().getChildren()) {
 
-                                if (task_.getValue(TaskHelper.class).getExecuted()==1&&fmt.format(Objects.requireNonNull(task_.getValue(TaskHelper.class)).getToExecute()).equals(fmt.format(currently_selected_date))) {
+                            if (Objects.requireNonNull(task_.getValue(TaskHelper.class)).getExecuted()==1&&fmt.format(Objects.requireNonNull(task_.getValue(TaskHelper.class)).getToExecute()).equals(fmt.format(currently_selected_date))) {
+
+                                tasksList.add(task_.getValue(TaskHelper.class));
+
+                            }
+
+
+                        }
+                        for (DataSnapshot task_ : task.getResult().getChildren()) {
+
+                                if (Objects.requireNonNull(task_.getValue(TaskHelper.class)).getExecuted()==0&&fmt.format(Objects.requireNonNull(task_.getValue(TaskHelper.class)).getToExecute()).equals(fmt.format(currently_selected_date))) {
 
                                     tasksList.add(task_.getValue(TaskHelper.class));
-                                    tasksAdapter.setTasks(tasksList);
+
                                 }
 
 
-                            }
-                            for (DataSnapshot task_ : task.getResult().getChildren()) {
-
-                                    if (task_.getValue(TaskHelper.class).getExecuted()==0&&fmt.format(Objects.requireNonNull(task_.getValue(TaskHelper.class)).getToExecute()).equals(fmt.format(currently_selected_date))) {
-
-                                        tasksList.add(task_.getValue(TaskHelper.class));
-                                        tasksAdapter.setTasks(tasksList);
-                                    }
-
-
-                            }
                         }
+                        tasksAdapter.setTasks(tasksList);
                     }
                 }
         );
     }
+
 }

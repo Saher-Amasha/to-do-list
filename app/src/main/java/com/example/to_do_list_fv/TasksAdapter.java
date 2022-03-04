@@ -74,23 +74,23 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> 
                 mDatabase.child(item.getName()).child("executed").setValue(1)
                         .addOnSuccessListener(aVoid -> {
                             // Write was successful!
+                            holder.task.setPaintFlags(holder.task.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                         })
                         .addOnFailureListener(e -> {
                             // Write failed
                         });
                 // add the strike through
-                holder.task.setPaintFlags(holder.task.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             } else {
                 item.setExecuted(0);
                 mDatabase.child(item.getName()).child("executed").setValue(0)
                         .addOnSuccessListener(aVoid -> {
                             // Write was successful!
+                            holder.task.setPaintFlags(holder.task.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
                         })
                         .addOnFailureListener(e -> {
                             // Write failed
                         });
                 // remove the strike throw
-                holder.task.setPaintFlags(holder.task.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
             }
         });
 
@@ -98,6 +98,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder> 
             Intent intent = new Intent(this.activity, UpdateTaskActivity.class);
             intent.putExtra("name",holder.title.getText().toString());
             intent.putExtra("description",holder.task.getText().toString());
+            intent.putExtra("category",holder.task_category.getText());
             activity.startActivity(intent);
         });
     }
